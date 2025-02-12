@@ -1,8 +1,13 @@
 <?php
 session_start();
-session_start();
-// Do a redirect here
-// header("Location: index.php");
+
+if (!isset($_SESSION["user"])) {
+    header("Location: index.php");
+    exit();
+}
+
+require_once "validation.php";
+require_once "testinput.php";
 
 $quantity1 = $_SESSION['q1'];
 $quantity2 = $_SESSION['q2'];
@@ -15,20 +20,6 @@ $total3 = round(1.98 * $quantity3, 2);
 $subtotal = $total1 + $total2 + $total3;
 $tax = round($subtotal * 0.095, 2);
 $total = round($subtotal + $tax, 2);
-
-// Check for the credit card 
-function validateCard($cardNumber) {
-    $cardNumber = str_replace(' ', '', $cardNumber);
-    
-    if (preg_match('/^5[1-5][0-9]{14}$/', $cardNumber)) {
-        return ['MASTERCARD', true];
-    } elseif (preg_match('/^4[0-9]{12}(?:[0-9]{3})?$/', $cardNumber)) {
-        return ['VISA', true];
-    } elseif (preg_match('/^3[47][0-9]{13}$/', $cardNumber)) {
-        return ['AMEX', true];
-    }
-    return [null, false];
-}
 
 // Validate the card number
 $message = '';  // Initialize the message variable
@@ -73,10 +64,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <input type="text" name="card_number" required><br>
         <input type="submit" name="next" value="Next &gt;">
     </form>
-    <p>
-        <?php 
-            echo $message;
-        ?>
-    </p>
+    <p><?php echo $message;?></p>
 </body>
 </html>

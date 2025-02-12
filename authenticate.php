@@ -1,9 +1,24 @@
 <?php
 session_start();
 
-$quantity1 = $_SESSION['q1'];
-$quantity2 = $_SESSION['q2'];
-$quantity3 = $_SESSION['q3'];
+$valid_users = [
+    "user1" => "password123",
+    "user2" => "securepass"
+];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once "testinput.php";
+    $name = test_input($_POST["name"] ?? "");
+    $pwd = test_input($_POST["pwd"] ?? "");
+
+    if (!empty($name) && !empty($pwd) && isset($valid_users[$name]) && $valid_users[$name] == $pwd) {
+        $_SESSION["user"] = $name;
+        header("Location: checkout.php");
+        exit();
+    } else {
+        echo "<p>Invalid username or password.</p>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -16,10 +31,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <title>Login</title>
     </head>
     <body>
-        <form method="post" action="checkout.php" method="POST">
-            Name: <input type="text" name="name" /><br>
-            Password: <input type="password" name="pwd" /><br>
-            Remember Me: <input type="checkbox" name="remember" value="ON" /><br>
-            <input type="submit" />
+        <form method="post">
+            <h1>Login</h1><hr><br>
+            Name: <input type="text" name="name" required /><br>
+            Password: <input type="password" name="pwd" required /><br>
+            <input type="submit" value="Login"/>
     </body>
 </html>
