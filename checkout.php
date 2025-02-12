@@ -1,6 +1,8 @@
-<!-- COPY -->
 <?php
 session_start();
+session_start();
+// Do a redirect here
+// header("Location: index.php");
 
 $quantity1 = $_SESSION['q1'];
 $quantity2 = $_SESSION['q2'];

@@ -1,4 +1,3 @@
-<!-- COPY -->
 <?php
 session_start();
 
@@ -17,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
         <title>Tax</title>
     </head>
     <body>
-        <form method="post" action="checkout.php" method="POST">
+        <form method="post" action="authenticate.php" method="POST">
             <p>
                 <h1>Total</h1><hr><br>
             </p>
