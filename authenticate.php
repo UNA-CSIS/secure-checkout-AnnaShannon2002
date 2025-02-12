@@ -2,9 +2,10 @@
 session_start();
 
 $valid_users = [
-    "user1" => "password123",
-    "user2" => "securepass"
+    "user" => "password"
 ];
+
+$error_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "testinput.php";
@@ -15,8 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user"] = $name;
         header("Location: checkout.php");
         exit();
-    } else {
-        echo "<p>Invalid username or password.</p>";
     }
 }
 ?>
