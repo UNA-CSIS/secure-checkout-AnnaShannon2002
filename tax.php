@@ -44,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
             </p>
             <p>
                 <label for="contshopping">Continue Shopping:</label>
-                <input type="submit" name="next" value="Next &gt;">
+                <button type="button" onclick="window.location.href='index.php'">Continue Shopping</button>
             </p>
     </body>
 </html>

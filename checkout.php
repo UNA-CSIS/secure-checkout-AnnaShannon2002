@@ -58,10 +58,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
     <h1>Checkout</h1><hr><br>
     <p>Total: $<?php echo number_format($total, 2); ?></p>
     <form method="post">
+        <label for="card_name">Card Name:</label>
+        <input type="text" name="card_name" required><br>
+        
+        <label for="expiration_date">Expiration Date:</label>
+        <input type="text" name="expiration_date" required><br>
+        
+        <label for="security_code">Security Code</label>
+        <input type="text" name="security_code" required><br>
+        
         <label for="card_number">Credit Card Number:</label>
-        <input type="text" name="card_number" required>
+        <input type="text" name="card_number" required><br>
         <input type="submit" name="next" value="Next &gt;">
     </form>
-        <p><?php echo $message; ?></p>
+    <p>
+        <?php 
+            echo $message;
+        ?>
+    </p>
 </body>
 </html>
